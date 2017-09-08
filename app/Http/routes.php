@@ -22,3 +22,7 @@ route::get('login','Auth\AuthController@getLogin')->name('login.get');
 route::post('login','Auth\AuthController@postLogin')->name('login.post');
 route::get('logout','Auth\AuthController@getLogout')->name('logout.get');
 
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('items', 'ItemsController', ['only' => ['create']]);
+});
+
